@@ -1,0 +1,41 @@
+python train_new.py \
+  --dataroot /srv/Data16tb/siva/ssiva/MR_Translation/cyclegan_dataset \
+  --name cyclegan_mr_A2B_resnet_9 \
+  --model cycle_gan \
+  --dataset_mode unaligned \
+  --direction AtoB \
+  --input_nc 1 \
+  --output_nc 1 \
+  --netG resnet_9blocks \
+  --netD pixel \
+  --preprocess none \
+  --batch_size 4 \
+  --num_threads 4 \
+  --n_epochs 100 \
+  --n_epochs_decay 100 \
+  --lr 0.0002 \
+  --beta1 0.5 \
+  --lambda_A 10 \
+  --lambda_B 10 \
+  --lambda_identity 0.5 \
+  --display_freq 400 \
+  --print_freq 100 \
+  --save_epoch_freq 10 \
+  --use_wandb \
+  --wandb_project_name "cyclegan_mr_translation"
+
+
+
+
+
+python test.py \
+  --dataroot /srv/Data16tb/siva/ssiva/MR_Translation/cyclegan_dataset \
+  --name cyclegan_mr_A2B_resnet_9 \
+  --model cycle_gan \
+  --dataset_mode unaligned \
+  --direction AtoB \
+  --input_nc 1 \
+  --output_nc 1 \
+  --netG resnet_9blocks \
+  --preprocess none \
+  --epoch best
